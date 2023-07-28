@@ -1,6 +1,22 @@
+/**
+  ******************************************************************************
+  * @file    		stm32f103xx_flash_w25q128jv.h
+  * @author  		Vedant A. Rokad
+  * @processor 	ARM Cortex-M3
+	* @controller STM32F103C8T6
+  * @date    		26-Feb-2022
+  * @brief   		Device_Driver Header file
+  ******************************************************************************
+ **/
+ 
 #include "stm32f103xx_spi.h"
-#include "stm32f103xx_gpio.h"
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+// 																		W25_Flash_MACROS                            		 //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 #define W25_dummy1 0xff
 #define W25_dummy2 0x00
 #define W25_write_Enable 0x06
@@ -33,6 +49,12 @@
 
 #define W25_memBlock2 0x800000
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+// 															W25_Flash_APIs_Helping_Function                        //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 void W25_flash_enable(SPI_TypeDef *pSPIx);
 uint8_t W25_flash_read_statusREG(SPI_TypeDef *pSPIx ,uint8_t RegADDR);
 void W25_flash_erase(SPI_TypeDef *pSPIx);
@@ -44,3 +66,6 @@ void W25_flash_readMemory(SPI_TypeDef *pSPIx , uint8_t *pRxBuffer , uint32_t len
 
 void SPI_SendByte(SPI_TypeDef *pSPIx,uint8_t byte);
 void delay(void);
+void w25_erase_call_delay(void);
+void W25_chip_erase(SPI_TypeDef *pSPIx);
+void W25_3_byte_data_sent(SPI_TypeDef* pSPIx ,uint32_t num,uint32_t memory_addr);

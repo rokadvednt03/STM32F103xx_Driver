@@ -1,9 +1,23 @@
-
+/**
+  ******************************************************************************
+  * @file    		stm32f103xx_gpio.h
+  * @author  		Vedant A. Rokad
+  * @processor 	ARM Cortex-M3
+	* @controller STM32F103C8T6
+  * @date    		26-Feb-2022
+  * @brief   		Peripheral_Driver Header file
+  ******************************************************************************
+ **/
+ 
 #include <stdint.h>
 #include "stm32f10x.h"
 
 
-
+/****************************************************************************************
+*                                                                                       *
+*                                     GPIO_MACROS                                       *
+*                                                                                       *
+/***************************************************************************************/
 #define GPIO_MODE_ANALOGIN	     0
 #define GPIO_MODE_FLOATIN 		 1
 #define GPIO_MODE_IN_PUPD		 2
@@ -55,7 +69,11 @@
 
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+// 															GPIO_Configuration_Structure                           //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 typedef struct
 {
 	uint32_t GPIO_PinNumber;
@@ -67,7 +85,11 @@ typedef struct
 }GPIO_PinConfig_t;
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//																GPIO_Handling_Structure                              //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 typedef struct
 {
 	GPIO_TypeDef *pGPIOx;
@@ -76,15 +98,15 @@ typedef struct
 
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//												  	GPIO_APIs_&_HELPING_FUNCTION                             //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle);
 void GPIO_DeInit(GPIO_TypeDef *pGPIOx);
 
-
-
 void GPIO_PeriClockControl(GPIO_TypeDef *pGPIOx , uint8_t EnorDi);
-
-
 
 uint8_t GPIO_ReadFromInputPin(GPIO_TypeDef *pGPIOx , uint8_t PinNumber);
 uint8_t GPIO_ReadFromInputPort(GPIO_TypeDef *pGPIOx);

@@ -57,4 +57,5 @@ void TIMER_DELAY(TIM_TypeDef *pTIMx ,uint16_t milisec);
 void delay_check(TIM_TypeDef *pTIMx );
 void PWM_generate(TIM_TypeDef *pTIMx , uint16_t channel , uint16_t freq , uint16_t duty);
 void PWM_Init(PWM_Handle_t *p_pwmHandler);
+void HAL_Timer_delay(TIM_TypeDef *pTIMx , uint16_t milisec);
 

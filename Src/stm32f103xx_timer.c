@@ -73,6 +73,30 @@ void TIMER_DELAY(TIM_TypeDef *pTIMx ,uint16_t milisec)
 	pTIMx->ARR = arr ;
 }
 
+void HAL_Timer_delay(TIM_TypeDef *pTIMx , uint16_t milisec)
+{
+		float freq = 1000 / milisec ;
+		uint16_t arr , pre ;
+		TIMER_PeriClockControl(pTIMx,ENABLE);
+		arr = 0xffff;
+		if(pTIMx == TIM1){
+			pre = (uint16_t)(142000000 / ((float)(freq*arr)));
+			pre = pre + 1 ;
+		}
+		else{
+			pre = (uint16_t)(72000000 / ((float)(freq*arr)))  ;
+			pre = pre + 1 ;
+		}
+		if(pTIMx == TIM1){
+			arr = (uint16_t)(142000000 / ((float)(freq*pre)));
+		}
+		else{
+			arr = (uint16_t)(72000000 / ((float)(freq*pre)))  ;
+		}
+		pTIMx->ARR = arr;
+		pTIMx->PSC = pre ;
+}
+
 void delay_check(TIM_TypeDef *pTIMx )
 {
 		pTIMx->CR1 |= (1<<0) ; // counter start 

@@ -5,13 +5,13 @@
   * @processor 	ARM Cortex-M3
 	* @controller STM32F103C8T8
   * @date    		27-Augest-2022
-  * @brief   		Device_Driver source file
+  * @brief   		Peripheral_Driver source file
   ******************************************************************************
  **/
  
-#include "stm32f10x.h"
+
 #include "stm32f103xx_uart.h"
-#include <stdint.h>
+
 
 
 /****************************************************************************************

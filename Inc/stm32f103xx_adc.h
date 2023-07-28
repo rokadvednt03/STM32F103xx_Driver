@@ -1,6 +1,22 @@
-#include "stm32f10x.h"
-#include "stm32f103xx_gpio.h"
+/**
+  ******************************************************************************
+  * @file    		stm32f103xx_adc.h
+  * @author  		Vedant A. Rokad
+  * @processor 	ARM Cortex-M3
+	* @controller STM32F103C8T6
+  * @date    		26-Feb-2022
+  * @brief   		Peripheral_Driver Header file
+  ******************************************************************************
+ **/
 
+#include "stm32f10x.h"
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//				 															ADC_MACROS                           					 //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 #define ADC_Data_Align_RIGHT 0
 #define ADC_Data_Align_LEFT 1
 
@@ -60,6 +76,12 @@
 #define ADC_Ch_sqn_18 17
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+// 															 ADC_Configuration_Structure                           //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 typedef struct
 {
 	uint32_t Data_Align ;
@@ -74,6 +96,11 @@ typedef struct
 }ADC_Config_t;
 
 
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//																 ADC_Handling_Structure                              //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 typedef struct
 {
 	ADC_Config_t Config;
@@ -82,9 +109,17 @@ typedef struct
 }ADC_Handle_t;
 
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//												  	GPIO_APIs_&_HELPING_FUNCTION                             //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 void ADC_Init(ADC_Handle_t *pHandleADC);
 void ADC_PeriClockControl(ADC_TypeDef *pADCx , uint8_t EnorDI);
 void ADC_OneChannel(ADC_Handle_t *pHandleADC , uint8_t channel_name);
 void ADC_StartConv(ADC_TypeDef *pADCx);
 void ADC_Data_Align(ADC_Handle_t *pHandleADC);
 void ADC_ChConf(ADC_Handle_t *pHandleADC , uint8_t channel_name,uint8_t channel_sequence);
+

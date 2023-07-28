@@ -1,4 +1,17 @@
+/**
+  ******************************************************************************
+  * @file    		stm32f103xx_flash_w25q128jv.c
+  * @author  		Vedant A. Rokad
+  * @processor 	ARM Cortex-M3
+	* @controller STM32F103C8T6
+  * @date    		26-Feb-2022
+  * @brief   		Device_Driver Source file
+  ******************************************************************************
+ **/
+ 
 #include "stm32f103xx_flash_w25q128jv.h"
+
+
 
 void W25_flash_enable(SPI_TypeDef *pSPIx)
 {
@@ -50,6 +63,7 @@ void SPI_SendByte(SPI_TypeDef *pSPIx,uint8_t byte)
 void W25_flash_eraseblock(SPI_TypeDef *pSPIx , uint32_t memory_addr)
 {
 	uint8_t memAddr;
+	W25_flash_enable(pSPIx);
 	delay();
 	SPI_Enable(pSPIx);
 				SPI_SendByte(pSPIx,W25_block_erase_64K);
@@ -61,6 +75,7 @@ void W25_flash_eraseblock(SPI_TypeDef *pSPIx , uint32_t memory_addr)
 				SPI_SendByte(pSPIx,memAddr);
 										
 	SPI_Disable(pSPIx);
+	w25_erase_call_delay();
 }
 
 
@@ -104,6 +119,57 @@ void W25_flash_readMemory(SPI_TypeDef *pSPIx , uint8_t *pRxBuffer , uint32_t len
 
 
 void delay(void)
+{ 
+	int i ;
+	for(i = 0 ; i < 81 ; i++);
+}
+
+
+
+void w25_erase_call_delay(void)
 {
-	for(int i = 0 ; i < 81 ; i++);
+	int ff ,de ;
+	for( ff = 0 ; ff < 200 ; ff++)
+		{
+							for( de = 0 ; de < 81 ; de++)
+							delay();
+		}
+}
+
+void W25_chip_erase(SPI_TypeDef *pSPIx)
+{
+	delay();
+	W25_flash_enable(SPI1);
+	delay();
+	SPI_Enable(pSPIx);
+			SPI_SendByte(pSPIx,0xC7);
+	SPI_Disable(SPI1);
+}
+
+void W25_3_byte_data_sent(SPI_TypeDef* pSPIx ,uint32_t num,uint32_t memory_addr)
+{
+	uint8_t memAddr;
+	uint8_t temp ;
+	delay();
+	W25_flash_enable(pSPIx);
+	delay();
+	SPI_Enable(pSPIx);
+
+				SPI_SendByte(pSPIx,W25_page_program);
+										memAddr = ((memory_addr >> 16) & (0xff));
+										SPI_SendByte(SPI1,memAddr);
+										memAddr = ((memory_addr >> 8) & (0xff));
+										SPI_SendByte(SPI1,memAddr);
+										memAddr = ((memory_addr) & (0xff));
+										SPI_SendByte(SPI1,memAddr);		
+	
+										temp = ((num >> 16) & (0xff));
+										SPI_SendByte(SPI1,temp);
+										temp = ((num >> 8) & (0xff));
+										SPI_SendByte(SPI1,temp);
+										temp = ((num) & (0xff));
+										SPI_SendByte(SPI1,temp);		
+				
+	SPI_Disable(pSPIx);
+	
 }

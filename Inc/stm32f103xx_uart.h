@@ -5,7 +5,7 @@
   * @processor 	ARM Cortex-M3
 	* @controller STM32F103C8T8
   * @date    		27-Augest-2022
-  * @brief   		Device_Driver header file
+  * @brief   		Peripheral_Driver header file
   ******************************************************************************
  **/
  

@@ -5,13 +5,13 @@
   * @processor 	ARM Cortex-M3
 	* @controller STM32F103C8T8
   * @date    		26-Feb-2022
-  * @brief   		Device_Driver Source file
+  * @brief   		Peripheral_Driver Source file
   ******************************************************************************
  **/
 
-#include "stm32f10x.h"
+
 #include "stm32f103xx_i2c.h"
-#include <stdint.h>
+
 
 static void I2C_Startbit_Gernation(I2C_TypeDef *pI2Cx);
 static void I2C_ExcicuteADDR_PhaseWrite(I2C_TypeDef *pI2Cx ,uint8_t SlaveADDR);

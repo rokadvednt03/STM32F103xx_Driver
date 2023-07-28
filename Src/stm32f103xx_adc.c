@@ -1,6 +1,22 @@
-#include "stm32f10x.h"
+/**
+  ******************************************************************************
+  * @file    		stm32f103xx_adc.c
+  * @author  		Vedant A. Rokad
+  * @processor 	ARM Cortex-M3
+	* @controller STM32F103C8T6
+  * @date    		26-Feb-2023
+  * @brief   		Peripheral_Driver Source file
+  ******************************************************************************
+ **/
+
 #include "stm32f103xx_adc.h"
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//																 ADC_PeriClockControl                                //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 void ADC_PeriClockControl(ADC_TypeDef *pADCx , uint8_t EnorDI)
 {
 	if(EnorDI == ENABLE)
@@ -20,6 +36,12 @@ void ADC_PeriClockControl(ADC_TypeDef *pADCx , uint8_t EnorDI)
 }
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//													ADC_One_Channel_Conversion_Init                            //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 void ADC_OneChannel(ADC_Handle_t *pHandleADC , uint8_t channel_name)
 {
 		if(pHandleADC->Config.Data_Align == ADC_Data_Align_RIGHT)
@@ -45,6 +67,12 @@ void ADC_OneChannel(ADC_Handle_t *pHandleADC , uint8_t channel_name)
 	
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+// 																	ADC_Start_Conersion                                //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 void ADC_StartConv(ADC_TypeDef *pADCx)
 {
 	int a ;

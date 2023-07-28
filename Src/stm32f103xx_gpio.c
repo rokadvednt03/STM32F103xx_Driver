@@ -1,5 +1,23 @@
+/**
+  ******************************************************************************
+  * @file    		stm32f103xx_gpio.c
+  * @author  		Vedant A. Rokad
+  * @processor 	ARM Cortex-M3
+	* @controller STM32F103C8T6
+  * @date    		26-Feb-2022
+  * @brief   		Peripheral_Driver Source file
+  ******************************************************************************
+ **/
+
+
 #include "stm32f103xx_gpio.h"
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//																GPIO_PeriClockControl                                //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 void GPIO_PeriClockControl(GPIO_TypeDef *pGPIOx , uint8_t EnorDi)
 {
 	if(EnorDi == ENABLE)
@@ -46,6 +64,11 @@ void GPIO_PeriClockControl(GPIO_TypeDef *pGPIOx , uint8_t EnorDi)
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//																		GPIO_Init                                				 //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 {
 	
@@ -106,6 +129,11 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//														GPIO_IRQ_Interrupt_ENConfig                              //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 void GPIO_IRQ_Interrupt_ENConfig(uint8_t IRQNumber, uint8_t EnorDi)
 {
 	if(EnorDi == ENABLE)
@@ -133,6 +161,12 @@ void GPIO_IRQHandling(uint8_t PinNumber)
 }
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                     //
+//																		GPIO_PinEnDn           			                     //
+//																															  										 //
+/////////////////////////////////////////////////////////////////////////////////////////
 void GPIO_PinEnDn(GPIO_TypeDef *pGPIOx,uint32_t PinNumber,uint32_t EnorDi)
 {
 		if(EnorDi == ENABLE)

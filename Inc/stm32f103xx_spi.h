@@ -5,11 +5,11 @@
   * @processor 	ARM Cortex-M3
 	* @controller STM32F103C8T6
   * @date    		26-Feb-2022
-  * @brief   		Device_Driver Header file
+  * @brief   		Peripheral_Driver Header file
   ******************************************************************************
  **/
  
-#include <stm32f10x.h>
+#include "stm32f10x.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                     //
