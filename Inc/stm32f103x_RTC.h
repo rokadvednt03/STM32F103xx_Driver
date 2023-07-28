@@ -1,3 +1,14 @@
+/**
+  ******************************************************************************
+  * @file    		stm32f103x_RTC.h
+  * @author  		Deep Lad
+  * @processor 	ARM Cortex-M3
+	* @controller STM32F103C8T6
+  * @date    		26-Feb-2022
+  * @brief   		Peripheral_Driver Header file
+  ******************************************************************************
+ **/
+
 #include "stm32f10x.h"
 #include <stdint.h>
 
